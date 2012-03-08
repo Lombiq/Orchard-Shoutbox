@@ -1,10 +1,13 @@
-Name: OrchardHUN.Shoutbox
+Name: Shoutbox
 AntiForgery: enabled
-Author: The Orchard Team
-Website: http://orchardproject.net
+Author: The Orchard Hungary Team
+Website: http://orchardshoutbox.codeplex.com
 Version: 1.0
-OrchardVersion: 1.0
-Description: Description for the module
+OrchardVersion: 1.4
+Description: A lightweight shoutbox module
 Features:
     OrchardHUN.Shoutbox:
-        Description: Description for feature OrchardHUN.Shoutbox.
+		Name: Shoutbox
+        Description: A lightweight shoutbox module
+		Category: Community
+		Dependencies: 
