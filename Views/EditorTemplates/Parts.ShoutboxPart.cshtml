@@ -1,0 +1,7 @@
+﻿@model OrchardHUN.Shoutbox.Models.ShoutboxPart
+<fieldset>
+    <legend>@T("Shoutbox settings")</legend>
+    @Html.LabelFor(model => model.MaxMessageCount, T("Maximal number of messages shown"))
+    @Html.TextBoxFor(model => model.MaxMessageCount, new { @class = "text text-small" })
+    @Html.ValidationMessageFor(model => model.MaxMessageCount)
+</fieldset>

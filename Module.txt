@@ -10,4 +10,4 @@ Features:
 		Name: Shoutbox
         Description: A lightweight shoutbox module
 		Category: Community
-		Dependencies: 
+		Dependencies: Orchard.Widgets, Orchard.jQuery

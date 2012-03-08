@@ -1,0 +1,10 @@
+﻿@model OrchardHUN.Shoutbox.ViewModels.ShoutboxMessageViewModel
+
+<ul>
+@foreach (var messageShape in Model.MessageShapes)
+{
+    <li>
+        @Display(messageShape())
+    </li>
+}
+</ul>

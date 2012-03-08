@@ -6,10 +6,11 @@ using Orchard.Data.Migration;
 using Orchard.Environment.Extensions;
 using Orchard.Core.Contents.Extensions;
 using Orchard.ContentManagement.MetaData;
+using OrchardHUN.Shoutbox.Models;
 
 namespace OrchardHUN.Shoutbox
 {
-    class Migrations : DataMigrationImpl
+    public class Migrations : DataMigrationImpl
     {
         public int Create()
         {
@@ -33,10 +34,17 @@ namespace OrchardHUN.Shoutbox
                     .WithPart("CommonPart")
             );
 
-            ContentDefinitionManager.AlterTypeDefinition("ShoutboxBoxWidget",
+            SchemaBuilder.CreateTable(typeof(ShoutboxPartRecord).Name,
+                table => table
+                    .ContentPartRecord()
+                    .Column<int>("MaxMessageCount")
+            );
+
+            ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",
                 cfg => cfg
                     .WithPart("WidgetPart")
                     .WithPart("CommonPart")
+                    .WithPart(typeof(ShoutboxPart).Name)
                     .WithSetting("Stereotype", "Widget")
             );
 

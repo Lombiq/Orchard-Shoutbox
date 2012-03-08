@@ -16,7 +16,7 @@ namespace OrchardHUN.Shoutbox
 
         public static Localizer T { get; set; }
 
-        static public Permissions()
+        static Permissions()
         {
             T = NullLocalizer.Instance;
 

@@ -1,0 +1,28 @@
+﻿@{
+    Script.Require("jQuery").AtFoot();
+    var formId = "orchard-hun-shoutbox-form-" + Model.ContentItem.Id;
+}
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        (function ($) {
+            var form = $("#@formId");
+
+            form.submit(function () {
+                var submitButton = $("#@formId .primaryAction");
+                submitButton.attr("disabled", "disabled");
+                $.post(form.attr("action"), form.serialize(), function (response) {
+                    submitButton.removeAttr('disabled');
+                });
+
+                return false;
+            });
+        })(jQuery);
+    </script>
+}
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("SaveMessage", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id }), FormMethod.Post, new { id = formId }))
+{
+    @Display(Model.MessageEditorShape());
+    <button type="submit" class="primaryAction">@T("Send")</button>
+}

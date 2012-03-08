@@ -1,0 +1,8 @@
+﻿<Placement>
+  <Place Parts_ShoutboxPart_Edit="Content:5"/>
+  
+  <Match ContentType="ShoutboxWidget">
+    <Place Parts_ShoutboxPart="Content:5"/>
+    <Place Content_SaveButton="-"/>
+  </Match>
+</Placement>
