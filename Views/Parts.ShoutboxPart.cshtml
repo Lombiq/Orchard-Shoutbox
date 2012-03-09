@@ -1,28 +1,53 @@
 ﻿@{
     Script.Require("jQuery").AtFoot();
-    var formId = "orchard-hun-shoutbox-form-" + Model.ContentItem.Id;
+    var formId = "orchardhun-shoutbox-form-" + Model.ContentItem.Id;
+    var messageContainerId = "orchardhun-shoutbox-messagecontainer-" + Model.ContentItem.Id;
 }
+
 @using (Script.Foot())
 {
     <script type="text/javascript">
         (function ($) {
-            var form = $("#@formId");
-
-            form.submit(function () {
-                var submitButton = $("#@formId .primaryAction");
-                submitButton.attr("disabled", "disabled");
-                $.post(form.attr("action"), form.serialize(), function (response) {
-                    submitButton.removeAttr('disabled');
-                });
-
-                return false;
+            $.get("@Url.Action("GetMessages", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id })", function (response) {
+                $("#@messageContainerId").html(response);
             });
         })(jQuery);
     </script>
 }
 
-@using (Html.BeginFormAntiForgeryPost(Url.Action("SaveMessage", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id }), FormMethod.Post, new { id = formId }))
+<div id="@messageContainerId" class="orchardhun-shoutbox-messages">
+</div>
+
+@if (Authorizer.Authorize(OrchardHUN.Shoutbox.Permissions.WriteMessage))
 {
-    @Display(Model.MessageEditorShape());
-    <button type="submit" class="primaryAction">@T("Send")</button>
+    using (Script.Foot())
+    {
+        <script type="text/javascript">
+            (function ($) {
+                var form = $("#@formId");
+
+                form.submit(function () {
+                    var submitButton = $("#@formId .primaryAction");
+                    submitButton.attr("disabled", "disabled");
+                    $.post(form.attr("action"), form.serialize(), function (response) {
+                        $("#@messageContainerId").html(response);
+                        form.find("input[type=text]").val("");
+                        submitButton.removeAttr('disabled');
+                    });
+
+                    return false;
+                });
+            })(jQuery);
+        </script>
+    }
+
+    using (Html.BeginFormAntiForgeryPost(Url.Action("SaveMessage", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id }), FormMethod.Post, new { id = formId }))
+    {
+        @Display(Model.MessageEditorShape());
+        <button type="submit" class="primaryAction">@T("Send")</button>
+    }
+}
+else
+{
+    @T("You're not allowed to post messages, please sign in.")
 }

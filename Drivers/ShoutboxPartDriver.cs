@@ -24,7 +24,6 @@ namespace OrchardHUN.Shoutbox.Drivers
 
         protected override DriverResult Display(ShoutboxPart part, string displayType, dynamic shapeHelper)
         {
-            // Message editor build here
             return ContentShape("Parts_ShoutboxPart",
                 () =>
                 {

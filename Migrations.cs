@@ -43,7 +43,7 @@ namespace OrchardHUN.Shoutbox
             ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",
                 cfg => cfg
                     .WithPart("WidgetPart")
-                    .WithPart("CommonPart")
+                    .WithPart("CommonPart", p => p.WithSetting("OwnerEditorSettings.ShowOwnerEditor", "false"))
                     .WithPart(typeof(ShoutboxPart).Name)
                     .WithSetting("Stereotype", "Widget")
             );

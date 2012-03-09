@@ -1,8 +1,9 @@
 ﻿<Placement>
   <Place Parts_ShoutboxPart_Edit="Content:5"/>
+  <Place Parts_ShoutboxPart="Content:5"/>
   
-  <Match ContentType="ShoutboxWidget">
-    <Place Parts_ShoutboxPart="Content:5"/>
+  <Match ContentType="ShoutboxMessage">
     <Place Content_SaveButton="-"/>
+    <!--<Place Parts_Common_Owner_Edit="-"/>-->
   </Match>
 </Placement>

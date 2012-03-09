@@ -10,6 +10,8 @@ using Orchard;
 using Orchard.Localization;
 using Orchard.DisplayManagement;
 using OrchardHUN.Shoutbox.ViewModels;
+using Orchard.Core.Common.Models;
+using Orchard.Data;
 
 namespace OrchardHUN.Shoutbox.Controllers
 {
@@ -18,25 +20,37 @@ namespace OrchardHUN.Shoutbox.Controllers
     {
         private readonly IOrchardServices _orchardServices;
         private readonly IContentManager _contentManager;
+        private readonly ITransactionManager _transactionManager;
         private readonly dynamic _shapeFactory;
 
         public Localizer T { get; set; }
 
-        public ShoutboxController(IOrchardServices orchardServices, IShapeFactory shapeFactory)
+        public ShoutboxController(
+            IOrchardServices orchardServices, 
+            ITransactionManager transactionManager, 
+            IShapeFactory shapeFactory)
         {
             _orchardServices = orchardServices;
             _contentManager = orchardServices.ContentManager;
+            _transactionManager = transactionManager;
+            _shapeFactory = shapeFactory;
 
             T = NullLocalizer.Instance;
         }
 
         public ShapePartialResult GetMessages(int shoutboxId)
         {
-            return null;
+            var messages = _contentManager
+                                    .Query("ShoutboxMessage")
+                                    .Where<CommonPartRecord>(record => record.Container.Id == shoutboxId)
+                                    .OrderByDescending(record => record.CreatedUtc)
+                                    .List();
+
+            var messageShapes = messages.Select(message => _contentManager.BuildDisplay(message));
 
             var shape = _shapeFactory.DisplayTemplate(
-                            TemplateName: "Messages",
-                            Model: new ShoutboxMessageViewModel { },
+                            TemplateName: "MessageList",
+                            Model: new ShoutboxMessageViewModel { MessageShapes = messageShapes },
                             Prefix: null);
 
             return new ShapePartialResult(this, shape);
@@ -45,15 +59,22 @@ namespace OrchardHUN.Shoutbox.Controllers
         [HttpPost]
         public ShapePartialResult SaveMessage(int shoutboxId)
         {
-            if (_orchardServices.Authorizer.Authorize(Permissions.WriteMessage, T("You're not allowed to post messages.")))
+            if (_orchardServices.Authorizer.Authorize(Permissions.WriteMessage))
             {
+                // This below is the standard workflow, see Orchard.Core.Contents.Controllers.AdminController or http://orchard.codeplex.com/workitem/18412
+                // To summarize: to modify fields properly, the content item has to be created first. Since the Message has a TextField, the item
+                // has to be first created, then updated with POST data. Since that UpdateEditor() also sets if the model is valid, if it happens not
+                // to be then we have to roll back that Create() with TransactionManager.
+                // Updating (validating) the item causes the problem described in the issue.
                 var message = _contentManager.New("ShoutboxMessage");
+                _contentManager.Create(message);
                 _contentManager.UpdateEditor(message, this);
 
                 if (ModelState.IsValid)
                 {
-                    _contentManager.Create(message);
+                    message.As<CommonPart>().Container = _contentManager.Get(shoutboxId);
                 }
+                else _transactionManager.Cancel();
             }
 
             return GetMessages(shoutboxId);

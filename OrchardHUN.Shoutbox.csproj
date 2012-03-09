@@ -76,7 +76,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Placement.info" />
+    <Content Include="Placement.info">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ShoutboxController.cs" />
@@ -86,11 +88,14 @@
     <Compile Include="Models\ShoutboxPart.cs" />
     <Compile Include="Models\ShoutboxPartRecord.cs" />
     <Compile Include="Permissions.cs" />
+    <Compile Include="Projections\ShoutboxFilter.cs" />
     <Compile Include="ViewModels\ShoutboxMessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\DisplayTemplates\Messages.cshtml" />
+    <None Include="Views\DisplayTemplates\MessageList.cshtml" />
     <None Include="Views\EditorTemplates\Parts.ShoutboxPart.cshtml" />
+    <Content Include="Views\Fields.Common.Text-ShoutboxMessage-Message.cshtml" />
+    <None Include="Views\Parts.Common.Metadata.ShoutboxWidget.cshtml" />
     <None Include="Views\Parts.ShoutboxPart.cshtml" />
   </ItemGroup>
   <ItemGroup />
