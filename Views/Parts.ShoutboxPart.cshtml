@@ -1,16 +1,17 @@
 ﻿@{
-    Script.Require("jQuery").AtFoot();
+    Script.Require("Shoutbox").AtFoot();
+    Style.Require("Shoutbox");
+    
     var formId = "orchardhun-shoutbox-form-" + Model.ContentItem.Id;
     var messageContainerId = "orchardhun-shoutbox-messagecontainer-" + Model.ContentItem.Id;
+    var getMessagesUrl = Url.Action("GetMessages", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id });
 }
 
 @using (Script.Foot())
 {
     <script type="text/javascript">
         (function ($) {
-            $.get("@Url.Action("GetMessages", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id })", function (response) {
-                $("#@messageContainerId").html(response);
-            });
+            $.shoutbox.loadMessages("@getMessagesUrl", "@messageContainerId");
         })(jQuery);
     </script>
 }
@@ -24,19 +25,7 @@
     {
         <script type="text/javascript">
             (function ($) {
-                var form = $("#@formId");
-
-                form.submit(function () {
-                    var submitButton = $("#@formId .primaryAction");
-                    submitButton.attr("disabled", "disabled");
-                    $.post(form.attr("action"), form.serialize(), function (response) {
-                        $("#@messageContainerId").html(response);
-                        form.find("input[type=text]").val("");
-                        submitButton.removeAttr('disabled');
-                    });
-
-                    return false;
-                });
+                $.shoutbox.initialize("@formId", "@getMessagesUrl", "@messageContainerId", "@T("Write message here")");
             })(jQuery);
         </script>
     }
@@ -49,5 +38,5 @@
 }
 else
 {
-    @T("You're not allowed to post messages, please sign in.")
+    @T("Sign in to post messages.")
 }

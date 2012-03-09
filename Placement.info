@@ -6,4 +6,8 @@
     <Place Content_SaveButton="-"/>
     <!--<Place Parts_Common_Owner_Edit="-"/>-->
   </Match>
+
+  <Match ContentType="ShoutboxMessage" DisplayType="ShoutboxWidget">
+    <Place Parts_Common_Metadata="Content:before.5;Shape=WidgetMessageMetadata"/>
+  </Match>
 </Placement>

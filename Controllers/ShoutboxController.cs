@@ -12,6 +12,7 @@ using Orchard.DisplayManagement;
 using OrchardHUN.Shoutbox.ViewModels;
 using Orchard.Core.Common.Models;
 using Orchard.Data;
+using OrchardHUN.Shoutbox.Models;
 
 namespace OrchardHUN.Shoutbox.Controllers
 {
@@ -40,13 +41,15 @@ namespace OrchardHUN.Shoutbox.Controllers
 
         public ShapePartialResult GetMessages(int shoutboxId)
         {
+            var shoutbox = _contentManager.Get<ShoutboxPart>(shoutboxId);
+
             var messages = _contentManager
                                     .Query("ShoutboxMessage")
                                     .Where<CommonPartRecord>(record => record.Container.Id == shoutboxId)
                                     .OrderByDescending(record => record.CreatedUtc)
-                                    .List();
+                                    .Slice(shoutbox.MaxMessageCount);
 
-            var messageShapes = messages.Select(message => _contentManager.BuildDisplay(message));
+            var messageShapes = messages.Select(message => _contentManager.BuildDisplay(message, "ShoutboxWidget"));
 
             var shape = _shapeFactory.DisplayTemplate(
                             TemplateName: "MessageList",
@@ -57,7 +60,7 @@ namespace OrchardHUN.Shoutbox.Controllers
         }
 
         [HttpPost]
-        public ShapePartialResult SaveMessage(int shoutboxId)
+        public void SaveMessage(int shoutboxId)
         {
             if (_orchardServices.Authorizer.Authorize(Permissions.WriteMessage))
             {
@@ -76,8 +79,6 @@ namespace OrchardHUN.Shoutbox.Controllers
                 }
                 else _transactionManager.Cancel();
             }
-
-            return GetMessages(shoutboxId);
         }
 
         bool IUpdateModel.TryUpdateModel<TModel>(TModel model, string prefix, string[] includeProperties, string[] excludeProperties)
