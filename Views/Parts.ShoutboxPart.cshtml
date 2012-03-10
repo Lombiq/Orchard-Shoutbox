@@ -7,18 +7,6 @@
     var getMessagesUrl = Url.Action("GetMessages", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id });
 }
 
-@using (Script.Foot())
-{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $.shoutbox.loadMessages("@getMessagesUrl", "@messageContainerId");
-        });
-    </script>
-}
-
-<div id="@messageContainerId" class="orchardhun-shoutbox-messages">
-</div>
-
 @if (Authorizer.Authorize(OrchardHUN.Shoutbox.Permissions.WriteMessage))
 {
     using (Script.Foot())
@@ -40,3 +28,16 @@ else
 {
     @T("Sign in to post messages.")
 }
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.shoutbox.loadMessages("@getMessagesUrl", "@messageContainerId");
+        });
+    </script>
+}
+
+<div id="@messageContainerId" class="orchardhun-shoutbox-messages">
+</div>

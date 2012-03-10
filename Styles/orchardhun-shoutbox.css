@@ -5,8 +5,13 @@
 
 .orcharhun-shoutbox-message-list li
 {
-    border-bottom: 1px dotted #000;
+    border-top: 1px dotted #000;
     margin: 5px 0;
+}
+
+.orcharhun-shoutbox-message-list li:first-child
+{
+    border-top: 0;
 }
 
 .orcharhun-shoutbox-message-list .metadata

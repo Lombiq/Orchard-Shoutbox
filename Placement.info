@@ -6,7 +6,6 @@
   <Match ContentType="ShoutboxMessage">
     <Place Content_SaveButton="-"/>
   </Match>
-
   <Match ContentType="ShoutboxMessage" Path="Admin/*">
     <Place Content_SaveButton="Sidebar:23"/>
   </Match>
