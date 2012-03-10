@@ -8,6 +8,6 @@
   </Match>
 
   <Match ContentType="ShoutboxMessage" DisplayType="ShoutboxWidget">
-    <Place Parts_Common_Metadata="Content:before.5;Shape=WidgetMessageMetadata"/>
+    <Place Parts_Common_Metadata="Meta:25;Shape=Parts_Common_Metadata_ShoutboxWidget"/>
   </Match>
 </Placement>

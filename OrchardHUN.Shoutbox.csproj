@@ -99,7 +99,7 @@
     <Content Include="Views\EditorTemplates\Fields.Common.Text.Edit-ShoutboxMessage-Message.cshtml" />
     <None Include="Views\EditorTemplates\Parts.ShoutboxPart.cshtml" />
     <Content Include="Views\Fields.Common.Text-ShoutboxMessage-Message.cshtml" />
-    <None Include="Views\WidgetMessageMetadata.cshtml" />
+    <None Include="Views\Parts.Common.Metadata.ShoutboxWidget.cshtml" />
     <None Include="Views\Parts.ShoutboxPart.cshtml" />
   </ItemGroup>
   <ItemGroup />

@@ -10,9 +10,9 @@
 @using (Script.Foot())
 {
     <script type="text/javascript">
-        (function ($) {
+        $(document).ready(function () {
             $.shoutbox.loadMessages("@getMessagesUrl", "@messageContainerId");
-        })(jQuery);
+        });
     </script>
 }
 
@@ -24,9 +24,9 @@
     using (Script.Foot())
     {
         <script type="text/javascript">
-            (function ($) {
+            $(document).ready(function() {
                 $.shoutbox.initialize("@formId", "@getMessagesUrl", "@messageContainerId", "@T("Write message here")");
-            })(jQuery);
+            });
         </script>
     }
 
