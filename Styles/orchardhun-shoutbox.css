@@ -6,7 +6,7 @@
 .orcharhun-shoutbox-message-list li
 {
     border-bottom: 1px dotted #000;
-    margin-bottom: 10px;
+    margin: 5px 0;
 }
 
 .orcharhun-shoutbox-message-list .metadata
@@ -17,6 +17,7 @@
 .orchardhun-shoutbox-form
 {
     width: 100%;
+    margin-top: 15px;
     text-align: center;
 }
 

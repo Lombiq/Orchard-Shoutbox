@@ -1,11 +1,149 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Web.Mvc;
+using Orchard.ContentManagement;
+using Orchard.Core.Common.Models;
+using Orchard.DisplayManagement;
+using Orchard.Forms.Services;
+using Orchard.Localization;
+using Orchard.Projections.Descriptors.Filter;
+using Orchard.Widgets.Models;
 
 namespace OrchardHUN.Shoutbox.Projections
 {
-    class ShoutboxFilter
+    public class ShoutboxFilter : Orchard.Projections.Services.IFilterProvider
     {
+        private readonly IContentManager _contentManager;
+
+        public Localizer T { get; set; }
+
+        public ShoutboxFilter(IContentManager contentManager)
+        {
+            _contentManager = contentManager;
+
+            T = NullLocalizer.Instance;
+        }
+
+        public void Describe(DescribeFilterContext describe)
+        {
+            describe.For("Content", T("Shoutbox"), T("Shoutbox"))
+                .Element("ShoutboxMessages", T("Shoutbox Messages"), T("Messages from a Shoutbox widget"),
+                    ApplyFilter,
+                    DisplayFilter,
+                    "ShoutboxMessagesFilter"
+                );
+        }
+
+        public void ApplyFilter(FilterContext context)
+        {
+            context.Query.ForType("ShoutboxMessage");
+
+            if (String.IsNullOrEmpty(context.State.ShoutboxWidget)) return;
+
+            context.Query.Where(x => x.ContentPartRecord<CommonPartRecord>(), x => x.Eq("Container.Id", context.State.ShoutboxWidget));
+        }
+
+        public LocalizedString DisplayFilter(FilterContext context)
+        {
+            if (String.IsNullOrEmpty(context.State.ShoutboxWidget))
+            {
+                return T("Any Shoutbox message");
+            }
+
+            int widgetId = int.Parse(context.State.ShoutboxWidget);
+            return T("Messages from the Shoutbox \"{0}\"", _contentManager.Get<WidgetPart>(widgetId).Title);
+        }
     }
+
+    public class ContentTypesFilterForms : IFormProvider
+    {
+        private dynamic _shapeFactory { get; set; }
+        private readonly IContentManager _contentManager;
+
+        public Localizer T { get; set; }
+
+        public ContentTypesFilterForms(
+            IShapeFactory shapeFactory,
+            IContentManager contentManager)
+        {
+            _shapeFactory = shapeFactory;
+            _contentManager = contentManager;
+
+            T = NullLocalizer.Instance;
+        }
+
+        public void Describe(DescribeContext context)
+        {
+            Func<IShapeFactory, object> form =
+                shape =>
+                {
+                    var f = _shapeFactory.Form(
+                        Id: "FromShoutboxWidget",
+                        _Parts: _shapeFactory.SelectList(
+                            Id: "shoutbox-widget", Name: "ShoutboxWidget",
+                            Title: T("Shoutbox Widget"),
+                            Description: T("Select a Shoutbox widget."),
+                            Size: 10,
+                            Multiple: false
+                            )
+                        );
+
+                    foreach (var widget in _contentManager.Query<WidgetPart, WidgetPartRecord>("ShoutboxWidget").List())
+                    {
+                        f._Parts.Add(new SelectListItem { Value = widget.Id.ToString(), Text = widget.Title });
+                    }
+
+                    return f;
+                };
+
+            context.Form("ShoutboxMessagesFilter", form);
+
+        }
+    }
+
+    //public interface IFilterProvider : IEventHandler
+    //{
+    //    void Describe(dynamic describe);
+    //}
+
+    //public class ShoutboxFilter : IFilterProvider
+    //{
+    //    public ShoutboxFilter()
+    //    {
+    //        T = NullLocalizer.Instance;
+    //    }
+
+    //    public Localizer T { get; set; }
+
+    //    public void Describe(dynamic describe)
+    //    {
+    //        describe.For("Content", T("Shoutbox"), T("Shoutbox"))
+    //            .Element("ShoutboxMessages", T("Shoutbox Messages"), T("Messages from a Shoutbox widget"),
+    //                (Action<dynamic>)ApplyFilter,
+    //                (Func<dynamic, LocalizedString>)DisplayFilter,
+    //                "ShoutboxMessagesFilter"
+    //            );
+
+    //    }
+
+    //    public void ApplyFilter(dynamic context)
+    //    {
+    //        var contentTypes = Convert.ToString(context.State.ContentTypes);
+    //        if (!String.IsNullOrEmpty(contentTypes))
+    //        {
+    //            context.Query = context.Query.ForType(contentTypes.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+    //        }
+    //    }
+
+    //    public LocalizedString DisplayFilter(dynamic context)
+    //    {
+    //        string contenttypes = context.State.ContentTypes;
+
+    //        if (String.IsNullOrEmpty(contenttypes))
+    //        {
+    //            return T("Any content item");
+    //        }
+
+    //        return T("Content with type {0}", contenttypes);
+    //    }
+    //}
 }

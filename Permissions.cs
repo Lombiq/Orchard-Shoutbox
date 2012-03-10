@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Orchard.Security.Permissions;
+﻿using System.Collections.Generic;
 using Orchard.Environment.Extensions.Models;
 using Orchard.Localization;
+using Orchard.Security.Permissions;
 
 namespace OrchardHUN.Shoutbox
 {

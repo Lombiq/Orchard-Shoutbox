@@ -2,12 +2,17 @@
   <Place Parts_ShoutboxPart_Edit="Content:5"/>
   <Place Parts_ShoutboxPart="Content:5"/>
   
+  <!--Show default save button only on admin-->
   <Match ContentType="ShoutboxMessage">
     <Place Content_SaveButton="-"/>
-    <!--<Place Parts_Common_Owner_Edit="-"/>-->
+  </Match>
+
+  <Match ContentType="ShoutboxMessage" Path="Admin/*">
+    <Place Content_SaveButton="Sidebar:23"/>
   </Match>
 
   <Match ContentType="ShoutboxMessage" DisplayType="ShoutboxWidget">
     <Place Parts_Common_Metadata="Meta:25;Shape=Parts_Common_Metadata_ShoutboxWidget"/>
+    <Place DiscussionAdministrationLink="Meta:25"/>
   </Match>
 </Placement>

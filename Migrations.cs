@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Orchard.ContentManagement.MetaData;
 using Orchard.Data.Migration;
-using Orchard.Environment.Extensions;
-using Orchard.Core.Contents.Extensions;
-using Orchard.ContentManagement.MetaData;
 using OrchardHUN.Shoutbox.Models;
 
 namespace OrchardHUN.Shoutbox
@@ -14,12 +8,6 @@ namespace OrchardHUN.Shoutbox
     {
         public int Create()
         {
-            //SchemaBuilder.CreateTable(typeof(ShoutboxMessagePartRecord).Name,
-            //    table => table
-            //        .ContentPartRecord()
-            //        .Column<int>("ShoutboxId")
-            //);
-
             ContentDefinitionManager.AlterPartDefinition("ShoutboxMessageFieldsPart",
                 part => part
                     .WithField("Message", field =>

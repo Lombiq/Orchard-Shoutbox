@@ -1,0 +1,26 @@
+﻿@using Orchard.Core.Contents
+
+@Display.Parts_Common_Metadata(ContentPart: Model.ContentPart)
+
+@{
+    var contentItem = (Orchard.ContentManagement.ContentItem)Model.ContentItem;
+    Script.Require("ShapesBase").AtFoot();
+}
+
+@if (Authorizer.Authorize(Permissions.EditContent, contentItem))
+{
+    @Html.ItemEditLinkWithReturnUrl(T("edit").ToString(), contentItem);
+}
+@if (Authorizer.Authorize(Permissions.DeleteContent, contentItem))
+{
+    <text> | </text>
+    @Html.Link(T("remove").ToString(), Url.ItemRemoveUrl(contentItem, null), new { itemprop = "RemoveUrl UnsafeUrl" })
+}
+
+@using (Script.Foot()) {
+<script type="text/javascript">
+//<![CDATA[
+    var confirmRemoveMessage = '@T("Are you sure you want to remove this message?")';
+//]]>
+</script>
+}
