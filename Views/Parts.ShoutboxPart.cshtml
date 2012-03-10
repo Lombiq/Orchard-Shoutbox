@@ -30,7 +30,7 @@
         </script>
     }
 
-    using (Html.BeginFormAntiForgeryPost(Url.Action("SaveMessage", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id }), FormMethod.Post, new { id = formId }))
+    using (Html.BeginFormAntiForgeryPost(Url.Action("SaveMessage", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id }), FormMethod.Post, new { id = formId, @class = "orchardhun-shoutbox-form" }))
     {
         @Display(Model.MessageEditorShape());
         <button type="submit" class="primaryAction">@T("Send")</button>

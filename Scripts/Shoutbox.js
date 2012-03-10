@@ -29,9 +29,13 @@
 
                     var submitButton = form.find(".primaryAction");
                     submitButton.attr("disabled", "disabled");
+
+                    textbox.attr("readonly", "readonly");
+
                     $.post(form.attr("action"), form.serialize(), function (response) {
                         that.loadMessages(url, containerId);
                         textbox.val("");
+                        textbox.removeAttr('readonly');
                         submitButton.removeAttr('disabled');
                     });
 

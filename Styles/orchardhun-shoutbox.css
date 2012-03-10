@@ -6,5 +6,26 @@
 .orcharhun-shoutbox-message-list li
 {
     border-bottom: 1px dotted #000;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+.orcharhun-shoutbox-message-list .metadata
+{
+    margin: 0;
+}
+
+.orchardhun-shoutbox-form
+{
+    width: 100%;
+    text-align: center;
+}
+
+.orchardhun-shoutbox-form fieldset
+{
+    margin: 0 auto;
+}
+
+.orchardhun-shoutbox-form input[readonly]
+{
+    background: #ccc;
 }
