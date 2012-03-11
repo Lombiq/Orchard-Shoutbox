@@ -1,0 +1,29 @@
+﻿@using OrchardHUN.Shoutbox
+
+@{
+    Script.Require("Shoutbox").AtFoot();
+    Style.Require("Shoutbox");
+    var shoutbox = (Orchard.ContentManagement.IContent)Model.ContentItem;
+}
+
+@if (Authorizer.Authorize(OrchardHUN.Shoutbox.Permissions.WriteMessage))
+{
+    using (Script.Foot())
+    {
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.shoutbox.initialize("@Html.ShoutboxFormId(shoutbox)", "@Url.FetchMessagesUrl(shoutbox)", "@Html.ShoutboxMessageContainerId(shoutbox)", "@T("Write message here")");
+            });
+        </script>
+    }
+
+    using (Html.BeginFormAntiForgeryPost(Url.Action("SaveMessage", new { Controller = "Shoutbox", Area = "OrchardHUN.Shoutbox", ShoutboxId = Model.ContentItem.Id }), FormMethod.Post, new { id = @Html.ShoutboxFormId(shoutbox), @class = "orchardhun-shoutbox-form" }))
+    {
+        @Display(Model.MessageEditorShape());
+        <button type="submit" class="primaryAction">@T("Send")</button>
+    }
+}
+else
+{
+    @T("Sign in to post messages.")
+}

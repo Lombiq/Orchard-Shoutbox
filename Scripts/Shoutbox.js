@@ -1,13 +1,13 @@
 ﻿(function ($) {
     $.extend({
         shoutbox: {
-            loadMessages: function (url, containerId) {
-                $.get(url, function (response) {
+            loadMessages: function (fetchMessagesUrl, containerId) {
+                $.get(fetchMessagesUrl, function (response) {
                     $("#" + containerId).html(response);
                 });
             },
 
-            initialize: function (formId, url, containerId, hintMessage) {
+            initialize: function (formId, fetchMessagesUrl, containerId, hintMessage) {
                 var form = $("#" + formId);
 
                 var textbox = form.find("input[type=text]");
@@ -23,7 +23,7 @@
 
                 form.submit(function () {
                     if (textbox.val() == "" || textbox.val() == hintMessage) {
-                        that.loadMessages(url, containerId);
+                        that.loadMessages(fetchMessagesUrl, containerId);
                         return false;
                     }
 
@@ -33,7 +33,7 @@
                     textbox.attr("readonly", "readonly");
 
                     $.post(form.attr("action"), form.serialize(), function (response) {
-                        that.loadMessages(url, containerId);
+                        that.loadMessages(fetchMessagesUrl, containerId);
                         textbox.val("");
                         textbox.removeAttr('readonly');
                         submitButton.removeAttr('disabled');

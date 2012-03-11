@@ -98,6 +98,7 @@
     <Compile Include="Controllers\ShoutboxController.cs" />
     <Compile Include="Drivers\ShoutboxPartDriver.cs" />
     <Compile Include="Handlers\ShoutboxPartHandler.cs" />
+    <Compile Include="ViewHelperExtensions.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ShoutboxPart.cs" />
     <Compile Include="Models\ShoutboxPartRecord.cs" />
@@ -107,13 +108,14 @@
     <Compile Include="ViewModels\ShoutboxMessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Parts.ShoutboxPart.Form.cshtml" />
     <None Include="Views\DisplayTemplates\MessageList.cshtml" />
     <Content Include="Views\EditorTemplates\Fields.Common.Text.Edit-ShoutboxMessage-Message.cshtml" />
     <None Include="Views\EditorTemplates\Parts.ShoutboxPart.cshtml" />
     <Content Include="Views\Fields.Common.Text-ShoutboxMessage-Message.cshtml" />
     <None Include="Views\Parts.Common.Metadata.ShoutboxWidget.cshtml" />
     <Content Include="Views\Parts.Common.Metadata.Summary-ShoutboxMessage.cshtml" />
-    <None Include="Views\Parts.ShoutboxPart.cshtml" />
+    <None Include="Views\Parts.ShoutboxPart.Messages.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

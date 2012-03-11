@@ -20,13 +20,16 @@ namespace OrchardHUN.Shoutbox.Drivers
 
         protected override DriverResult Display(ShoutboxPart part, string displayType, dynamic shapeHelper)
         {
-            return ContentShape("Parts_ShoutboxPart",
-                () =>
-                {
-                    var message = _contentManager.New("ShoutboxMessage");
+            return Combined(
+                    ContentShape("Parts_ShoutboxPart_Messages", () => shapeHelper.Parts_ShoutboxPart_Messages()),
+                    ContentShape("Parts_ShoutboxPart_Form",
+                    () =>
+                    {
+                        var message = _contentManager.New("ShoutboxMessage");
 
-                    return shapeHelper.Parts_ShoutboxPart(MessageEditorShape: _contentManager.BuildEditor(message));
-                });
+                        return shapeHelper.Parts_ShoutboxPart_Form(MessageEditorShape: _contentManager.BuildEditor(message));
+                    })
+                );
         }
 
         // GET

@@ -36,7 +36,7 @@ namespace OrchardHUN.Shoutbox.Controllers
             T = NullLocalizer.Instance;
         }
 
-        public ShapePartialResult GetMessages(int shoutboxId)
+        public ShapePartialResult FetchMessages(int shoutboxId)
         {
             var shoutbox = _contentManager.Get<ShoutboxPart>(shoutboxId);
 

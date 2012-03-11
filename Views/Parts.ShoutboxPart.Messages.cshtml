@@ -1,0 +1,19 @@
+﻿@using OrchardHUN.Shoutbox
+
+@{
+    Script.Require("Shoutbox").AtFoot();
+    Style.Require("Shoutbox");
+    var shoutbox = (Orchard.ContentManagement.IContent)Model.ContentItem;
+}
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.shoutbox.loadMessages("@Url.FetchMessagesUrl(shoutbox)", "@Html.ShoutboxMessageContainerId(shoutbox)");
+        });
+    </script>
+}
+
+<div id="@Html.ShoutboxMessageContainerId(shoutbox)" class="orchardhun-shoutbox-messages">
+</div>
