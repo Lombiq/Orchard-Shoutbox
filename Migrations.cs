@@ -26,6 +26,7 @@ namespace OrchardHUN.Shoutbox
                 table => table
                     .ContentPartRecord()
                     .Column<int>("MaxMessageCount")
+                    .Column<int>("ProjectionId")
             );
 
             ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",

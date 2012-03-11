@@ -11,5 +11,11 @@ namespace OrchardHUN.Shoutbox.Models
             get { return Record.MaxMessageCount; }
             set { Record.MaxMessageCount = value; }
         }
+
+        public int ProjectionId
+        {
+            get { return Record.ProjectionId; }
+            set { Record.ProjectionId = value; }
+        }
     }
 }

@@ -19,6 +19,12 @@
     margin: 0;
 }
 
+.orchardhun-shoutbox-projectionlink-container
+{
+    text-align: center;
+    margin: 10px 0;
+}
+
 .orchardhun-shoutbox-form
 {
     width: 100%;

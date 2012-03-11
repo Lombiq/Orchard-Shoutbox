@@ -1,7 +1,8 @@
 ﻿<Placement>
   <Place Parts_ShoutboxPart_Edit="Content:5"/>
   <Place Parts_ShoutboxPart_Messages="Content:5"/>
-  <Place Parts_ShoutboxPart_Form="Content:6"/>
+  <Place Parts_ShoutboxPart_ProjectionLink="Content:6"/>
+  <Place Parts_ShoutboxPart_Form="Content:7"/>
   
   <!--Show default save button only on admin-->
   <Match ContentType="ShoutboxMessage">
