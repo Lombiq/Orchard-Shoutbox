@@ -25,5 +25,12 @@
 }
 else
 {
-    @T("{0} to post messages.", Html.ActionLink(T("Sign in").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Context.Request.QueryString["ReturnUrl"] ?? Context.Request.RawUrl) }))
+    if (WorkContext.CurrentUser == null)
+    {
+        @T("{0} to post messages.", Html.ActionLink(T("Sign in").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Context.Request.QueryString["ReturnUrl"] ?? Context.Request.RawUrl) })) 
+    }
+    else
+    {
+        @T("You're not allowed to post messages.")
+    }
 }
