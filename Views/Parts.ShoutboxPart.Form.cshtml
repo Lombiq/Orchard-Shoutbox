@@ -25,5 +25,5 @@
 }
 else
 {
-    @T("Sign in to post messages.")
+    @T("{0} to post messages.", Html.ActionLink(T("Sign in").ToString(), "LogOn", new { Controller = "Account", Area = "Orchard.Users", ReturnUrl = (Context.Request.QueryString["ReturnUrl"] ?? Context.Request.RawUrl) }))
 }
