@@ -2,7 +2,7 @@ Name: Shoutbox
 AntiForgery: enabled
 Author: The Orchard Hungary Team
 Website: http://orchardshoutbox.codeplex.com
-Version: 1.0
+Version: 0.9
 OrchardVersion: 1.4
 Description: A lightweight shoutbox module
 Features:
