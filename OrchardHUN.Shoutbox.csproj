@@ -111,7 +111,6 @@
     <None Include="Views\Parts.ShoutboxPart.ProjectionLink.cshtml" />
     <None Include="Views\Parts.ShoutboxPart.Form.cshtml" />
     <None Include="Views\DisplayTemplates\MessageList.cshtml" />
-    <Content Include="Views\EditorTemplates\Fields.Common.Text.Edit-ShoutboxMessage-Message.cshtml" />
     <None Include="Views\EditorTemplates\Parts.ShoutboxPart.cshtml" />
     <Content Include="Views\Fields.Common.Text-ShoutboxMessage-Message.cshtml" />
     <None Include="Views\Parts.Common.Metadata.ShoutboxWidget.cshtml" />
