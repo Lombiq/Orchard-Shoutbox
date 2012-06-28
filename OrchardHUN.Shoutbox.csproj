@@ -108,6 +108,7 @@
     <Compile Include="ViewModels\ShoutboxMessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Fields.Common.Text.Edit-ShoutboxMessage-Message.cshtml" />
     <None Include="Views\Parts.ShoutboxPart.ProjectionLink.cshtml" />
     <None Include="Views\Parts.ShoutboxPart.Form.cshtml" />
     <None Include="Views\DisplayTemplates\MessageList.cshtml" />

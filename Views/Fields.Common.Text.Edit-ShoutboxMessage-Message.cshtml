@@ -1,0 +1,14 @@
+﻿@{
+    Html.ViewContext.ViewData.TemplateInfo.HtmlFieldPrefix = Model.Prefix;
+    var viewModel = (Orchard.Core.Common.ViewModels.TextFieldDriverViewModel)Model.Model;
+}      
+
+<fieldset>
+    @if (String.IsNullOrWhiteSpace(viewModel.Settings.Flavor)) {
+        @Html.TextBox("Text", viewModel.Text, new { @class = "text" })
+    }
+    else {
+        @Display.Body_Editor(Text: viewModel.Text, EditorFlavor: viewModel.Settings.Flavor)
+    }
+    <span class="hint">@viewModel.Settings.Hint</span>
+</fieldset>

@@ -4,14 +4,13 @@
   <Place Parts_ShoutboxPart_ProjectionLink="Content:6"/>
   <Place Parts_ShoutboxPart_Form="Content:7"/>
   
-  <!--Show default save button only on admin-->
   <Match ContentType="ShoutboxMessage">
-    <Place Content_SaveButton="-"/>
+    <Place Content_SaveButton="-"/><!--Show default save button only on admin-->
+    <Place Fields_Common_Text_Edit-Message="Content:2.5;Shape=Fields_Common_Text_Edit__ShoutboxMessage__Message"/>
   </Match>
   <Match ContentType="ShoutboxMessage" Path="Admin/*">
     <Place Content_SaveButton="Sidebar:23"/>
   </Match>
-
   <Match ContentType="ShoutboxMessage" DisplayType="ShoutboxWidget">
     <Place Parts_Common_Metadata="Meta:25;Shape=Parts_Common_Metadata_ShoutboxWidget"/>
     <Place DiscussionAdministrationLink="Meta:25"/>
