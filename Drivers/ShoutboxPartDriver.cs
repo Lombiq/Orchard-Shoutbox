@@ -2,21 +2,26 @@
 using Orchard.ContentManagement.Drivers;
 using OrchardHUN.Shoutbox.Models;
 using System.Collections.Generic;
+using OrchardHUN.Shoutbox.Services;
 
 namespace OrchardHUN.Shoutbox.Drivers
 {
     public class ShoutboxPartDriver : ContentPartDriver<ShoutboxPart>
     {
         private readonly IContentManager _contentManager;
+        private readonly IShoutboxUiService _shoutboxUiService;
 
         protected override string Prefix
         {
             get { return "OrchardHUN.Shoutbox"; }
         }
 
-        public ShoutboxPartDriver(IContentManager contentManager)
+        public ShoutboxPartDriver(
+            IContentManager contentManager,
+            IShoutboxUiService shoutboxUiService)
         {
             _contentManager = contentManager;
+            _shoutboxUiService = shoutboxUiService;
         }
 
         protected override DriverResult Display(ShoutboxPart part, string displayType, dynamic shapeHelper)
@@ -24,7 +29,7 @@ namespace OrchardHUN.Shoutbox.Drivers
             var results = new List<DriverResult>(3);
 
             results.Add(
-                ContentShape("Parts_ShoutboxPart_Messages", () => shapeHelper.Parts_ShoutboxPart_Messages())
+                ContentShape("Parts_ShoutboxPart_Messages", () => shapeHelper.Parts_ShoutboxPart_Messages(MessageListShape: _shoutboxUiService.CreateShoutboxMessageListShape(part.Id)))
                 );
 
             if (part.ProjectionId != 0)

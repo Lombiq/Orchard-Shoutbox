@@ -33,7 +33,7 @@
                     textbox.attr("readonly", "readonly");
 
                     $.post(form.attr("action"), form.serialize(), function (response) {
-                        that.loadMessages(fetchMessagesUrl, containerId);
+                        $("#" + containerId).html(response);
                         textbox.val("");
                         textbox.removeAttr('readonly');
                         submitButton.removeAttr('disabled');

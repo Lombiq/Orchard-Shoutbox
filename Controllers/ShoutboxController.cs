@@ -10,6 +10,7 @@ using Orchard.Mvc;
 using Orchard.Themes;
 using OrchardHUN.Shoutbox.Models;
 using OrchardHUN.Shoutbox.ViewModels;
+using OrchardHUN.Shoutbox.Services;
 
 namespace OrchardHUN.Shoutbox.Controllers
 {
@@ -19,45 +20,31 @@ namespace OrchardHUN.Shoutbox.Controllers
         private readonly IOrchardServices _orchardServices;
         private readonly IContentManager _contentManager;
         private readonly ITransactionManager _transactionManager;
-        private readonly dynamic _shapeFactory;
+        private readonly IShoutboxUiService _shoutboxUiService;
 
         public Localizer T { get; set; }
 
         public ShoutboxController(
             IOrchardServices orchardServices, 
-            ITransactionManager transactionManager, 
-            IShapeFactory shapeFactory)
+            ITransactionManager transactionManager,
+            IShoutboxUiService shoutboxUiService)
         {
             _orchardServices = orchardServices;
             _contentManager = orchardServices.ContentManager;
             _transactionManager = transactionManager;
-            _shapeFactory = shapeFactory;
+            _shoutboxUiService = shoutboxUiService;
 
             T = NullLocalizer.Instance;
         }
 
+        // This is not really needed now, but we may add auto-update functionality (like in a chat window) later
         public ShapePartialResult FetchMessages(int shoutboxId)
         {
-            var shoutbox = _contentManager.Get<ShoutboxPart>(shoutboxId);
-
-            var messages = _contentManager
-                                    .Query("ShoutboxMessage")
-                                    .Where<CommonPartRecord>(record => record.Container.Id == shoutboxId)
-                                    .OrderByDescending(record => record.CreatedUtc)
-                                    .Slice(shoutbox.MaxMessageCount);
-
-            var messageShapes = messages.Select(message => _contentManager.BuildDisplay(message, "ShoutboxWidget"));
-
-            var shape = _shapeFactory.DisplayTemplate(
-                            TemplateName: "MessageList",
-                            Model: new ShoutboxMessageViewModel { MessageShapes = messageShapes },
-                            Prefix: null);
-
-            return new ShapePartialResult(this, shape);
+            return new ShapePartialResult(this, _shoutboxUiService.CreateShoutboxMessageListShape(shoutboxId));
         }
 
         [HttpPost]
-        public void SaveMessage(int shoutboxId)
+        public ShapePartialResult SaveMessage(int shoutboxId)
         {
             if (_orchardServices.Authorizer.Authorize(Permissions.WriteMessage))
             {
@@ -73,9 +60,12 @@ namespace OrchardHUN.Shoutbox.Controllers
                 if (ModelState.IsValid)
                 {
                     message.As<CommonPart>().Container = _contentManager.Get(shoutboxId);
+                    _contentManager.Flush();
                 }
                 else _transactionManager.Cancel();
             }
+
+            return FetchMessages(shoutboxId);
         }
 
         bool IUpdateModel.TryUpdateModel<TModel>(TModel model, string prefix, string[] includeProperties, string[] excludeProperties)
