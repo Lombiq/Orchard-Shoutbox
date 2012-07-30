@@ -12,7 +12,9 @@ namespace OrchardHUN.Shoutbox
                 part => part
                     .WithField("Message", field =>
                     {
-                        field.OfType("TextField");
+                        field
+                            .OfType("TextField")
+                            .WithSetting("TextFieldSettings.Flavor", "small");
                     })
             );
 
@@ -38,7 +40,20 @@ namespace OrchardHUN.Shoutbox
             );
 
 
-            return 1;
+            return 2;
+        }
+
+        public int UpdateFrom1()
+        {
+            ContentDefinitionManager.AlterPartDefinition("ShoutboxMessageFieldsPart",
+                part => part
+                    .WithField("Message", field => {
+                        field
+                            .WithSetting("TextFieldSettings.Flavor", "small");
+                    })
+            );
+
+            return 2;
         }
     }
 }
