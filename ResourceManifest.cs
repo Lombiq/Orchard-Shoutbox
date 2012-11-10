@@ -7,7 +7,7 @@ namespace OrchardHUN.Shoutbox
         public void BuildManifests(ResourceManifestBuilder builder)
         {
             var manifest = builder.Add();
-            manifest.DefineScript("Shoutbox").SetUrl("Shoutbox.js").SetDependencies("jQuery");
+            manifest.DefineScript("Shoutbox").SetUrl("orchardhun-shoutbox.js").SetDependencies("jQuery");
             manifest.DefineStyle("Shoutbox").SetUrl("orchardhun-shoutbox.css");
         }
     }

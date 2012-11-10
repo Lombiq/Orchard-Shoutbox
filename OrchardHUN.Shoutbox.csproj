@@ -60,7 +60,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Shoutbox.js" />
+    <Content Include="Scripts\orchardhun-shoutbox.js" />
     <Content Include="Styles\orchardhun-shoutbox.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
