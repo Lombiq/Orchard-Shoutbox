@@ -112,15 +112,15 @@
     <Compile Include="ViewModels\ShoutboxMessageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\Fields.Common.Text.Edit-ShoutboxMessage-Message.cshtml" />
-    <None Include="Views\Parts.ShoutboxPart.ProjectionLink.cshtml" />
-    <None Include="Views\Parts.ShoutboxPart.Form.cshtml" />
-    <None Include="Views\DisplayTemplates\MessageList.cshtml" />
-    <None Include="Views\EditorTemplates\Parts.ShoutboxPart.cshtml" />
+    <Content Include="Views\Fields.Common.Text.Edit-ShoutboxMessage-Message.cshtml" />
+    <Content Include="Views\Parts.ShoutboxPart.ProjectionLink.cshtml" />
+    <Content Include="Views\Parts.ShoutboxPart.Form.cshtml" />
+    <Content Include="Views\DisplayTemplates\MessageList.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts.ShoutboxPart.cshtml" />
     <Content Include="Views\Fields.Common.Text-ShoutboxMessage-Message.cshtml" />
-    <None Include="Views\Parts.Common.Metadata.ShoutboxWidget.cshtml" />
+    <Content Include="Views\Parts.Common.Metadata.ShoutboxWidget.cshtml" />
     <Content Include="Views\Parts.Common.Metadata.Summary-ShoutboxMessage.cshtml" />
-    <None Include="Views\Parts.ShoutboxPart.Messages.cshtml" />
+    <Content Include="Views\Parts.ShoutboxPart.Messages.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
