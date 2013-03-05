@@ -11,16 +11,26 @@
 {
     @Html.ItemEditLinkWithReturnUrl(T("edit").ToString(), contentItem);
 }
+
 @if (Authorizer.Authorize(Permissions.DeleteContent, contentItem))
 {
     <text> | </text>
     @Html.Link(T("remove").ToString(), Url.ItemRemoveUrl(contentItem, null), new { itemprop = "RemoveUrl UnsafeUrl" })
-}
 
-@using (Script.Foot()) {
-<script type="text/javascript">
-//<![CDATA[
-    var confirmRemoveMessage = '@T("Are you sure you want to remove this message?")';
-//]]>
-</script>
+    // This is so the below ones are only included once.
+    if (WorkContext.GetState<string>("OrchardHUN.Shoutbox.Includes") == null)
+    {
+        using (Script.Foot())
+        {
+            <script type="text/javascript">
+                //<![CDATA[
+                var confirmRemoveMessage = '@T("Are you sure you want to remove this message?")';
+                //]]>
+            </script>
+        }
+
+        @Html.AntiForgeryToken()
+
+        WorkContext.SetState<string>("OrchardHUN.Shoutbox.Includes", "set");
+    }
 }
