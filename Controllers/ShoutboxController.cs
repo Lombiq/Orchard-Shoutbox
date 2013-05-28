@@ -60,7 +60,6 @@ namespace OrchardHUN.Shoutbox.Controllers
                 if (ModelState.IsValid)
                 {
                     message.As<CommonPart>().Container = _contentManager.Get(shoutboxId);
-                    _contentManager.Flush();
                 }
                 else _transactionManager.Cancel();
             }
