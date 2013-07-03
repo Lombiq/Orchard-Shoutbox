@@ -16,20 +16,20 @@ namespace OrchardHUN.Shoutbox
                             .OfType("TextField")
                             .WithSetting("TextFieldSettings.Flavor", "small");
                     })
-            );
+                );
 
             ContentDefinitionManager.AlterTypeDefinition("ShoutboxMessage",
                 cfg => cfg
                     .WithPart("ShoutboxMessageFieldsPart")
                     .WithPart("CommonPart")
-            );
+                );
 
             SchemaBuilder.CreateTable(typeof(ShoutboxPartRecord).Name,
                 table => table
                     .ContentPartRecord()
                     .Column<int>("MaxMessageCount")
                     .Column<int>("ProjectionId")
-            );
+                );
 
             ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",
                 cfg => cfg
@@ -37,7 +37,7 @@ namespace OrchardHUN.Shoutbox
                     .WithPart("CommonPart", p => p.WithSetting("OwnerEditorSettings.ShowOwnerEditor", "false"))
                     .WithPart(typeof(ShoutboxPart).Name)
                     .WithSetting("Stereotype", "Widget")
-            );
+                );
 
 
             return 2;
@@ -51,7 +51,7 @@ namespace OrchardHUN.Shoutbox
                         field
                             .WithSetting("TextFieldSettings.Flavor", "small");
                     })
-            );
+                );
 
             return 2;
         }
