@@ -4,12 +4,12 @@
     <ol>
         <li>
             @Html.LabelFor(model => model.MaxMessageCount, T("Maximal number of messages shown"))
-            @Html.TextBoxFor(model => model.MaxMessageCount, new { @class = "text text-small" })
+            @Html.TextBoxFor(model => model.MaxMessageCount, new { @class = "text small" })
             @Html.ValidationMessageFor(model => model.MaxMessageCount)
         </li>
         <li>
             @Html.LabelFor(model => model.ProjectionId, T("Numerical Id of the projection to list all messages"))
-            @Html.TextBoxFor(model => model.ProjectionId, new { @class = "text text-small" })
+            @Html.TextBoxFor(model => model.ProjectionId, new { @class = "text small" })
             @Html.ValidationMessageFor(model => model.ProjectionId)
             <span class="hint">@T("Provide an Id here for an automatic link to the projection page that you set up to list all messages. The numerical Id of the projection is required (this is the number after \"Edit/\" in the url when editing it.")</span>
         </li>
