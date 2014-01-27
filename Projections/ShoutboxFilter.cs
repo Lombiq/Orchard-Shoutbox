@@ -16,12 +16,14 @@ namespace OrchardHUN.Shoutbox.Projections
 
         public Localizer T { get; set; }
 
+
         public ShoutboxFilter(IContentManager contentManager)
         {
             _contentManager = contentManager;
 
             T = NullLocalizer.Instance;
         }
+
 
         public void Describe(DescribeFilterContext describe)
         {
@@ -54,12 +56,14 @@ namespace OrchardHUN.Shoutbox.Projections
         }
     }
 
+
     public class ContentTypesFilterForms : IFormProvider
     {
         private dynamic _shapeFactory { get; set; }
         private readonly IContentManager _contentManager;
 
         public Localizer T { get; set; }
+
 
         public ContentTypesFilterForms(
             IShapeFactory shapeFactory,
@@ -70,6 +74,7 @@ namespace OrchardHUN.Shoutbox.Projections
 
             T = NullLocalizer.Instance;
         }
+
 
         public void Describe(DescribeContext context)
         {
@@ -96,7 +101,6 @@ namespace OrchardHUN.Shoutbox.Projections
                 };
 
             context.Form("ShoutboxMessagesFilter", form);
-
         }
     }
 }

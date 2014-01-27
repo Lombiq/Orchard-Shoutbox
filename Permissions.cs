@@ -13,12 +13,14 @@ namespace OrchardHUN.Shoutbox
 
         public static Localizer T { get; set; }
 
+
         static Permissions()
         {
             T = NullLocalizer.Instance;
 
             WriteMessage.Description = T("Write Shoutbox messages.").Text;
         }
+
 
         public IEnumerable<Permission> GetPermissions()
         {

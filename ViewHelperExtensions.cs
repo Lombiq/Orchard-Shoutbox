@@ -20,6 +20,7 @@ namespace OrchardHUN.Shoutbox
         }
     }
 
+
     public static class UrlHelperExtensions
     {
         public static string FetchMessagesUrl(this UrlHelper url, IContent shoutbox)

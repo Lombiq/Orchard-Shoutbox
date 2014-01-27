@@ -16,6 +16,7 @@ namespace OrchardHUN.Shoutbox.Drivers
             get { return "OrchardHUN.Shoutbox"; }
         }
 
+
         public ShoutboxPartDriver(
             IContentManager contentManager,
             IShoutboxUiService shoutboxUiService)
@@ -23,6 +24,7 @@ namespace OrchardHUN.Shoutbox.Drivers
             _contentManager = contentManager;
             _shoutboxUiService = shoutboxUiService;
         }
+
 
         protected override DriverResult Display(ShoutboxPart part, string displayType, dynamic shapeHelper)
         {

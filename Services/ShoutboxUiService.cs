@@ -15,6 +15,7 @@ namespace OrchardHUN.Shoutbox.Services
         private readonly IContentManager _contentManager;
         private readonly dynamic _shapeFactory;
 
+
         public ShoutboxUiService(
             IContentManager contentManager,
             IShapeFactory shapeFactory)
@@ -22,6 +23,7 @@ namespace OrchardHUN.Shoutbox.Services
             _contentManager = contentManager;
             _shapeFactory = shapeFactory;
         }
+
 
         public dynamic CreateShoutboxMessageListShape(int shoutboxId)
         {

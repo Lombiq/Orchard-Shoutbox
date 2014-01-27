@@ -24,6 +24,7 @@ namespace OrchardHUN.Shoutbox.Controllers
 
         public Localizer T { get; set; }
 
+
         public ShoutboxController(
             IOrchardServices orchardServices, 
             ITransactionManager transactionManager,
@@ -36,6 +37,7 @@ namespace OrchardHUN.Shoutbox.Controllers
 
             T = NullLocalizer.Instance;
         }
+
 
         // This is not really needed now, but we may add auto-update functionality (like in a chat window) later
         public ShapePartialResult FetchMessages(int shoutboxId)
