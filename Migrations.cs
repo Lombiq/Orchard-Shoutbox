@@ -24,12 +24,6 @@ namespace OrchardHUN.Shoutbox
                     .WithPart("CommonPart")
                 );
 
-            SchemaBuilder.CreateTable(typeof(ShoutboxPartRecord).Name,
-                table => table
-                    .ContentPartRecord()
-                    .Column<int>("MaxMessageCount")
-                    .Column<int>("ProjectionId")
-                );
 
             ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",
                 cfg => cfg
@@ -40,7 +34,7 @@ namespace OrchardHUN.Shoutbox
                 );
 
 
-            return 2;
+            return 3;
         }
 
         public int UpdateFrom1()
@@ -54,6 +48,13 @@ namespace OrchardHUN.Shoutbox
                 );
 
             return 2;
+        }
+
+        public int UpdateFrom2()
+        {
+            SchemaBuilder.DropTable("ShoutboxPartRecord");
+
+            return 3;
         }
     }
 }

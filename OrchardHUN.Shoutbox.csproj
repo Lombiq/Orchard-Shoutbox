@@ -100,13 +100,11 @@
   <ItemGroup>
     <Compile Include="Controllers\ShoutboxController.cs" />
     <Compile Include="Drivers\ShoutboxPartDriver.cs" />
-    <Compile Include="Handlers\ShoutboxPartHandler.cs" />
     <Compile Include="Services\IShoutboxUiService.cs" />
     <Compile Include="Services\ShoutboxUiService.cs" />
     <Compile Include="ViewHelperExtensions.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ShoutboxPart.cs" />
-    <Compile Include="Models\ShoutboxPartRecord.cs" />
     <Compile Include="Permissions.cs" />
     <Compile Include="Projections\ShoutboxFilter.cs" />
     <Compile Include="ResourceManifest.cs" />
