@@ -3,7 +3,7 @@ AntiForgery: enabled
 Author: The Orchard Hungary Team / Lombiq
 Website: http://orchardshoutbox.codeplex.com
 Version: 1.1
-OrchardVersion: 1.4
+OrchardVersion: 1.8
 Description: A lightweight shoutbox module
 Features:
     OrchardHUN.Shoutbox:
