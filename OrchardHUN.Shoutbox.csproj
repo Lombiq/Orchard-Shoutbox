@@ -121,7 +121,9 @@
     <Content Include="Views\Parts.Common.Metadata.Summary-ShoutboxMessage.cshtml" />
     <Content Include="Views\Parts.ShoutboxPart.Messages.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Licence.md" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
