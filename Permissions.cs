@@ -24,20 +24,22 @@ namespace OrchardHUN.Shoutbox
 
         public IEnumerable<Permission> GetPermissions()
         {
-            return new[] {
+            return new[]
+            {
                 WriteMessage
             };
         }
 
         public IEnumerable<PermissionStereotype> GetDefaultStereotypes()
         {
-            return new[] {
-                new PermissionStereotype {
+            return new[]
+            {
+                new PermissionStereotype
+                {
                     Name = "Authenticated",
                     Permissions = new[] {WriteMessage}
                 },
             };
         }
-
     }
 }
