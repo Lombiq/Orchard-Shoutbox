@@ -1,7 +1,7 @@
 Name: Shoutbox
 AntiForgery: enabled
 Author: The Orchard Hungary Team / Lombiq
-Website: http://orchardshoutbox.codeplex.com
+Website: https://github.com/Lombiq/Orchard-Shoutbox
 Version: 1.1
 OrchardVersion: 1.8
 Description: A lightweight shoutbox module
