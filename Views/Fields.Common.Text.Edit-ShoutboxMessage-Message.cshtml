@@ -10,5 +10,5 @@
     else {
         @Display.Body_Editor(Text: viewModel.Text, EditorFlavor: viewModel.Settings.Flavor)
     }
-    <span class="hint">@viewModel.Settings.Hint</span>
+    @Html.Hint(viewModel.Settings.Hint)
 </fieldset>
