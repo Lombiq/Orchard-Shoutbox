@@ -3,11 +3,11 @@ AntiForgery: enabled
 Author: The Orchard Hungary Team / Lombiq
 Website: https://github.com/Lombiq/Orchard-Shoutbox
 Version: 1.1
-OrchardVersion: 1.9.0
+OrchardVersion: 1.10
 Description: A lightweight shoutbox module
 Features:
     OrchardHUN.Shoutbox:
 		Name: Shoutbox
         Description: A lightweight shoutbox module
 		Category: Community
-		Dependencies: Orchard.Widgets, Orchard.jQuery, Orchard.Projections, Orchard.Forms, Common
+		Dependencies: Orchard.Widgets, Orchard.Resources, Orchard.Projections, Orchard.Forms, Common
