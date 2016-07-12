@@ -3,6 +3,7 @@ using Orchard.ContentManagement.Drivers;
 using OrchardHUN.Shoutbox.Models;
 using System.Collections.Generic;
 using OrchardHUN.Shoutbox.Services;
+using Orchard.ContentManagement.Handlers;
 
 namespace OrchardHUN.Shoutbox.Drivers
 {
@@ -70,6 +71,16 @@ namespace OrchardHUN.Shoutbox.Drivers
         {
             updater.TryUpdateModel(part, Prefix, null, null);
             return Editor(part, shapeHelper);
+        }
+
+        protected override void Exporting(ShoutboxPart part, ExportContentContext context)
+        {
+            ExportInfoset(part, context);
+        }
+
+        protected override void Importing(ShoutboxPart part, ImportContentContext context)
+        {
+            ImportInfoset(part, context);
         }
     }
 }
