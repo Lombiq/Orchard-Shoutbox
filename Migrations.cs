@@ -36,7 +36,7 @@ namespace OrchardHUN.Shoutbox
                 );
 
 
-            return 3;
+            return 4;
         }
 
         public int UpdateFrom1()
