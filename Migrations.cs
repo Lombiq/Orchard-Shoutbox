@@ -22,6 +22,7 @@ namespace OrchardHUN.Shoutbox
                 cfg => cfg
                     .WithPart("ShoutboxMessageFieldsPart")
                     .WithPart("CommonPart")
+                    .WithIdentity()
                 );
 
 
@@ -62,7 +63,13 @@ namespace OrchardHUN.Shoutbox
         {
             ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",
                 cfg => cfg
-                    .WithIdentity());
+                    .WithIdentity()
+                );
+
+            ContentDefinitionManager.AlterTypeDefinition("ShoutboxMessage",
+                cfg => cfg
+                    .WithIdentity()
+                );
 
             return 4;
         }
