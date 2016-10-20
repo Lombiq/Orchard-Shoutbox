@@ -83,8 +83,7 @@ namespace OrchardHUN.Shoutbox.Drivers
                 var projectionPart = _contentManager.Get<ProjectionPart>(part.ProjectionId);
                 if (projectionPart != null)
                 {
-                    var projectionIdentity = _contentManager.GetItemMetadata(projectionPart).Identity;
-                    context.Element(part.PartDefinition.Name).SetAttributeValue("ProjectionId", projectionIdentity.ToString());
+                    context.Element(part.PartDefinition.Name).SetAttributeValue("ProjectionId", projectionPart.Id.ToString());
                 }
             }
         }
@@ -92,10 +91,7 @@ namespace OrchardHUN.Shoutbox.Drivers
         protected override void Importing(ShoutboxPart part, ImportContentContext context)
         {
             ImportInfoset(part, context);
-        }
 
-        protected override void ImportCompleted(ShoutboxPart part, ImportContentContext context)
-        {
             var projection = context.Attribute(part.PartDefinition.Name, "ProjectionId");
             if (projection != null)
             {
