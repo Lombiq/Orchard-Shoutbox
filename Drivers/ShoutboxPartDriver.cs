@@ -83,7 +83,8 @@ namespace OrchardHUN.Shoutbox.Drivers
                 var projectionPart = _contentManager.Get<ProjectionPart>(part.ProjectionId);
                 if (projectionPart != null)
                 {
-                    context.Element(part.PartDefinition.Name).SetAttributeValue("ProjectionId", projectionPart.Id.ToString());
+                    var projectionIdentity = _contentManager.GetItemMetadata(projectionPart).Identity;
+                    context.Element(part.PartDefinition.Name).SetAttributeValue("ProjectionId", projectionIdentity.ToString());
                 }
             }
         }
