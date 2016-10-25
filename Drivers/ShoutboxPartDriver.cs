@@ -4,7 +4,6 @@ using OrchardHUN.Shoutbox.Models;
 using System.Collections.Generic;
 using OrchardHUN.Shoutbox.Services;
 using Orchard.ContentManagement.Handlers;
-using Orchard.Projections.Models;
 
 namespace OrchardHUN.Shoutbox.Drivers
 {
@@ -80,7 +79,7 @@ namespace OrchardHUN.Shoutbox.Drivers
 
             if (part.ProjectionId > 0)
             {
-                var projectionPart = _contentManager.Get<ProjectionPart>(part.ProjectionId);
+                var projectionPart = _contentManager.Get(part.ProjectionId);
                 if (projectionPart != null)
                 {
                     var projectionIdentity = _contentManager.GetItemMetadata(projectionPart).Identity;
@@ -96,7 +95,7 @@ namespace OrchardHUN.Shoutbox.Drivers
             var projection = context.Attribute(part.PartDefinition.Name, "ProjectionId");
             if (projection != null)
             {
-                part.ProjectionId = context.GetItemFromSession(projection).As<ProjectionPart>().Id;
+                part.ProjectionId = context.GetItemFromSession(projection).Id;
             }
         }
     }
