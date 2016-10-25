@@ -22,6 +22,7 @@ namespace OrchardHUN.Shoutbox
                 cfg => cfg
                     .WithPart("ShoutboxMessageFieldsPart")
                     .WithPart("CommonPart")
+                    .WithIdentity()
                 );
 
 
@@ -31,10 +32,11 @@ namespace OrchardHUN.Shoutbox
                     .WithPart("CommonPart", p => p.WithSetting("OwnerEditorSettings.ShowOwnerEditor", "false"))
                     .WithPart(typeof(ShoutboxPart).Name)
                     .WithSetting("Stereotype", "Widget")
+                    .WithIdentity()
                 );
 
 
-            return 3;
+            return 4;
         }
 
         public int UpdateFrom1()
@@ -55,6 +57,21 @@ namespace OrchardHUN.Shoutbox
             SchemaBuilder.DropTable("ShoutboxPartRecord");
 
             return 3;
+        }
+
+        public int UpdateFrom3()
+        {
+            ContentDefinitionManager.AlterTypeDefinition("ShoutboxWidget",
+                cfg => cfg
+                    .WithIdentity()
+                );
+
+            ContentDefinitionManager.AlterTypeDefinition("ShoutboxMessage",
+                cfg => cfg
+                    .WithIdentity()
+                );
+
+            return 4;
         }
     }
 }
