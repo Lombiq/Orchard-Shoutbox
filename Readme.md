@@ -1,8 +1,8 @@
-# Orchard Shoutbox Readme
+# Orchard Shoutbox
 
 
 
-## Project Description
+## About
 
 A lightweight shoutbox module for the Orchard CMS
 
@@ -31,12 +31,9 @@ If you want an "All messages" link to be displayed below a Shoutbox Widget, conf
 
 You can install the module from the [Gallery](https://gallery.orchardproject.net/List/Modules/Orchard.Module.OrchardHUN.Shoutbox).
 
-The module's source is available in two public source repositories, automatically mirrored in both directions with [Git-hg Mirror](https://githgmirror.com):
 
-- [https://bitbucket.org/Lombiq/orchard-shoutbox](https://bitbucket.org/Lombiq/orchard-shoutbox) (Mercurial repository)
-- [https://github.com/Lombiq/Orchard-Shoutbox](https://github.com/Lombiq/Orchard-Shoutbox) (Git repository)
+## Contributing and support
 
-Bug reports, feature requests and comments are warmly welcome, **please do so via GitHub**.
-Feel free to send pull requests too, no matter which source repository you choose for this purpose.
+Bug reports, feature requests, comments, questions, code contributions, and love letters are warmly welcome, please do so via GitHub issues and pull requests. Please adhere to our [open-source guidelines](https://lombiq.com/open-source-guidelines) while doing so.
 
-This project is developed by [Lombiq Technologies Ltd](http://lombiq.com/). Commercial-grade support is available through Lombiq.
+This project is developed by [Lombiq Technologies](https://lombiq.com/). Commercial-grade support is available through Lombiq.
